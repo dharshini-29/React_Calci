@@ -1,6 +1,6 @@
 # Ex04 Simple Calculator - React Project
 ## Date:28/03/2025
-## Name: K DHARSHINI
+## Name:DHARSHINI K
 ## Reg No:212223220017
 ## AIM
 To  develop a Simple Calculator using React.js with clean and responsive design, ensuring a smooth user experience across different screen sizes.
@@ -47,129 +47,111 @@ Deploy the website.
 Upload to GitHub Pages for free hosting.
 
 ## PROGRAM
-
-## APP.JS
-
+## Calculator.js
 ```
-import React, { useState } from "react";
-import "./App.css";
+import React, { useState } from 'react';
+import './index.css';
 
-function App() {
-  const [input, setInput] = useState("");
+const Calculator = () => {
+  const [input, setInput] = useState('');
 
-  function handleClick(value) {
-    setInput(input + value);
-  }
+  const handleClick = (value) => {
+    setInput((prev) => prev + value);
+  };
 
-  function clearInput() {
-    setInput("");
-  }
-
-  function calculateResult() {
+  const calculate = () => {
     try {
-      setInput(eval(input).toString()); 
-    } catch (error) {
-      setInput("Error");
+      // eslint-disable-next-line no-eval
+      setInput(eval(input).toString());
+    } catch {
+      setInput('Error');
     }
-  }
+  };
+
+  const clear = () => {
+    setInput('');
+  };
 
   return (
     <div className="calculator">
-      <h2>Calculator</h2>
+      <h2>Simple Calculator</h2>
       <input type="text" value={input} readOnly />
       <div className="buttons">
-        {["7", "8", "9", "/", "4", "5", "6", "*", "1", "2", "3", "-", "0", ".", "=", "+"].map(function (char) {
-          return (
-            <button key={char} onClick={char === "=" ? calculateResult : function () { handleClick(char); }}>
-              {char}
-            </button>
-          );
-        })}
-        <button className="clear" onClick={clearInput}>C</button>
+        {'1234567890+-*/.'.split('').map((char) => (
+          <button key={char} onClick={() => handleClick(char)}>{char}</button>
+        ))}
+        <button onClick={calculate}>=</button>
+        <button onClick={clear}>C</button>
       </div>
+      <footer>
+        <p> DHARSHINI K  |  Reg No: 212223220017</p>
+      </footer>
+    </div>
+  );
+};
+
+export default Calculator;
+```
+## App.js
+```
+import React from 'react';
+import Calculator from './Calculator';
+
+function App() {
+  return (
+    <div className="App">
+      <Calculator />
     </div>
   );
 }
 
 export default App;
-
 ```
-
-## APP.CSS:
-
+## Index.css
 ```
-
 body {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  height: 100vh;
-  background-color: #d78080;
   font-family: Arial, sans-serif;
+  background-color: #fafafa;
+  text-align: center;
 }
 
 .calculator {
-  background: #e09e9e;
+  background: rgb(226, 255, 60);
   padding: 20px;
-  border-radius: 10px;
-  box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
-  text-align: center;
-  width: 250px;
-}
-
-h2 {
-  margin-bottom: 10px;
+  margin: 50px auto;
+  border-radius: 12px;
+  max-width: 300px;
+  box-shadow: 0 0 10px rgba(0,0,0,0.1);
 }
 
 input {
   width: 100%;
-  height: 40px;
-  text-align: right;
-  font-size: 1.5em;
-  padding: 5px;
-  margin-bottom: 10px;
-  border: 1px solid #e6d7d7;
-  border-radius: 5px;
-}
-
-.buttons {
-  display: grid;
-  grid-template-columns: repeat(4, 1fr);
-  gap: 5px;
-}
-
-button {
   padding: 10px;
-  font-size: 1.2em;
-  background: #3498db;
-  color: rgb(255, 255, 255);
+  font-size: 1.2rem;
+  margin-bottom: 10px;
+}
+
+.buttons button {
+  width: 60px;
+  height: 40px;
+  margin: 5px;
+  font-size: 1.1rem;
   border: none;
+  background: #050505;
+  color: white;
   border-radius: 5px;
-  cursor: pointer;
 }
 
-button:hover {
-  background: #2980b9;
+footer {
+  margin-top: 20px;
+  font-size: 0.9rem;
+  color: gray;
 }
-
-.clear {
-  grid-column: span 4;
-  background: #e74c3c;
-}
-
-.clear:hover {
-  background: #c0392b;
-}
-
-
 ```
 
 ## OUTPUT
+![ex04](https://github.com/user-attachments/assets/7c424ecd-19e5-4a29-b9eb-7a741add32e7)
 
-![image](https://github.com/user-attachments/assets/f3ce7d04-0785-4965-9141-b6a9b50f9567)
-
-
-![image](https://github.com/user-attachments/assets/050a1b9a-e306-4314-ba28-717d7513742b)
 
 ## RESULT
 The program for developing a simple calculator in React.js is executed successfully.
